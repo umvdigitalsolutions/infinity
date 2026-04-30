@@ -48,7 +48,7 @@ export default function AboutPage() {
 
             <p className="mt-6 max-w-3xl text-base leading-7 text-slate-300 md:text-lg md:leading-8">
               Anay Infinity Pvt Ltd is built on the strong foundation of{" "}
-              <span className="font-semibold text-white">Ansh Batteries</span>,
+              <span className="font-semibold text-justify text-white">Ansh Batteries</span>,
               established in 2002 in Jodhpur. What began as a trusted regional
               business has grown into a forward-looking enterprise serving
               customers across India with vision, reliability, and scale.

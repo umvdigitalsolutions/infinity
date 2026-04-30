@@ -1,5 +1,9 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Hero from "./components/Hero";
+import ProductModal from "./components/ProductModal";
 import {
   BatteryCharging,
   SunMedium,
@@ -15,24 +19,78 @@ const businessVerticals = [
     description:
       "Reliable supply of multi-brand batteries across automotive, inverter, and industrial applications.",
     icon: BatteryCharging,
+    products: [
+      {
+        name: "Automotive Batteries",
+        image: "/automotive.png",
+          brands: [
+          { name: "Exide", image: "/exide.jpg" },
+          { name: "Amaron", image: "/amaron.png" },
+          { name: "Okaya", image: "/okaya.jpg" },
+          { name: "SF Sonic", image: "/sf.jpeg" },
+        ],
+      },
+      {
+        name: "Inverter Batteries",
+        image: "/inverter.png",
+        brands: [
+          { name: "Luminous", image: "/LUMINOUS.jpg" },
+          { name: "Microtek", image: "/microtek.jpg" },
+          { name: "Amaron Inverter", image: "/amaroninverter.jpg" },
+        ],
+      },
+      {
+        name: "Industrial Batteries",
+        image: "/industrial.png",
+        brands: [
+          { name: "HBL", image: "/hbl.png" },
+          { name: "Exide Industrial", image: "/exideindustrial.png" },
+          { name: "Okaya Industrial", image: "/okayaindustrial.png" },
+        ],
+      },
+      {
+        name: "Maintenance Kits",
+        image: "/maintenance.png",
+        brands: [
+          { name: "Installation", image: "https://via.placeholder.com/80?text=Install" },
+          { name: "Service Plans", image: "https://via.placeholder.com/80?text=Service" },
+        ],
+      },
+    ],
   },
   {
     title: "Solar EPC & Energy Solutions",
     description:
       "End-to-end solar solutions for residential, commercial, and industrial needs.",
     icon: SunMedium,
+    products: ["Solar Panels", "Inverters", "Mounting Systems", "BOS Components"],
   },
   {
     title: "Power Backup Systems",
     description:
       "Complete backup solutions including inverters, stabilizers, and advanced energy systems.",
     icon: ShieldCheck,
+    products: [
+      { name: "Lithium-ion Batteries For Two Wheelers", image: "https://via.placeholder.com/80?text=TwoWheeler" },
+      { name: "Lithium-ion Batteries For Three Wheelers (L3)", image: "https://via.placeholder.com/80?text=L3" },
+      { name: "Lithium-ion Batteries For Three Wheelers (L5)", image: "https://via.placeholder.com/80?text=L5" },
+      { name: "Lithium-ion Batteries For E-Tractor", image: "https://via.placeholder.com/80?text=E-Tractor" },
+      { name: "Lithium-ion Batteries For Golf Carts", image: "https://via.placeholder.com/80?text=GolfCart" },
+      { name: "Lithium-ion Batteries For Electric Drones", image: "https://via.placeholder.com/80?text=Drone" },
+      { name: "Lithium-ion Batteries For E-Cleaning Machine", image: "https://via.placeholder.com/80?text=Cleaning" },
+      { name: "Lithium-ion Batteries For Electric Forklift", image: "https://via.placeholder.com/80?text=Forklift" },
+      { name: "Lithium-ion Batteries For Electric Cycles", image: "https://via.placeholder.com/80?text=E-Cycle" },
+      { name: "Inverters", image: "https://via.placeholder.com/80?text=Inverter" },
+      { name: "UPS Systems", image: "https://via.placeholder.com/80?text=UPS" },
+      { name: "Inverter Batteries", image: "https://via.placeholder.com/80?text=Battery" },
+    ],
   },
   {
     title: "Global Exports & Trading",
     description:
       "Expanding into international markets with high-quality Indian products and sourcing solutions.",
     icon: Globe2,
+    products: ["Export Logistics", "Sourcing Services", "Custom Shipments"],
   },
 ];
 
@@ -53,6 +111,9 @@ const stats = [
 ];
 
 export default function Home() {
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState(null);
+
   return (
     <main className="bg-[#06111f] text-white">
       <Hero />
@@ -82,7 +143,7 @@ export default function Home() {
             Our Business Verticals
           </h2>
 
-          <p className="mt-4 text-base leading-7 text-slate-300">
+          <p className="mt-4 text-base leading-7 text-slate-300 text-justify">
             We deliver dependable solutions across energy distribution, solar
             infrastructure, power backup, and international trade.
           </p>
@@ -109,14 +170,22 @@ export default function Home() {
                   {item.description}
                 </p>
 
-                <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-blue-100 transition hover:text-red-400">
+                <button
+                  onClick={() => {
+                    setSelected(item);
+                    setOpen(true);
+                  }}
+                  className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-blue-100 transition hover:text-red-400"
+                >
                   Learn More <ArrowRight size={16} />
-                </div>
+                </button>
               </div>
             );
           })}
         </div>
       </section>
+
+      <ProductModal open={open} onClose={() => setOpen(false)} item={selected} />
 
       {/* FEATURE / WHY SECTION */}
       <section className="mx-auto max-w-7xl px-6 pb-16 md:pb-20">
@@ -130,7 +199,7 @@ export default function Home() {
               Strength, scale and reliability
             </h2>
 
-            <p className="mt-4 text-slate-300 leading-7">
+            <p className="mt-4 text-slate-300 leading-7 text-justify">
               Built on trust, experience, and scalable infrastructure, we serve
               our customers with dependable products, execution strength, and a
               long-term business approach.
@@ -169,7 +238,7 @@ export default function Home() {
               Looking for a reliable growth partner?
             </h3>
 
-            <p className="mt-4 text-sm leading-7 text-white/70 md:text-base">
+            <p className="mt-4 text-sm leading-7 text-white/70 md:text-base text-justify">
               We deliver power, reliability, and scalable business solutions
               built for long-term value.
             </p>

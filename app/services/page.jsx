@@ -70,11 +70,13 @@ export default function ServicesPage() {
             className="flex justify-center lg:justify-start"
           >
             <div className="w-full max-w-[430px]">
-              <img
-                src="/infi.jpeg"
-                alt="Anay Infinity Pvt Ltd"
-                className="h-auto w-full object-contain"
-              />
+              <div className="rounded-[22px] border border-white/10 bg-white/[0.02] p-6 shadow-sm">
+                <img
+                  src="/infi.jpeg"
+                  alt="Anay Infinity Pvt Ltd"
+                  className="h-auto w-full object-contain rounded-[14px]"
+                />
+              </div>
             </div>
           </motion.div>
 
@@ -105,7 +107,7 @@ export default function ServicesPage() {
               animate="show"
               custom={3}
               variants={fadeUp}
-              className="mt-8 max-w-xl text-lg leading-9 text-slate-700"
+              className="mt-8 max-w-xl text-lg leading-9 text-white"
             >
               From advanced battery solutions to solar EPC execution, power
               backup systems, and nationwide distribution, we deliver
@@ -127,8 +129,15 @@ export default function ServicesPage() {
                 viewport={{ once: true, amount: 0.2 }}
                 custom={index}
                 variants={fadeUp}
-                className="h-full flex flex-col overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.02] shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className="relative h-full flex flex-col overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.02] shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
+                <div className="absolute right-4 top-4 flex items-center">
+                  <img
+                    src="/infi.jpeg"
+                    alt="Anay Infinity logo"
+                    className="h-10 w-10 object-cover rounded-[10px] bg-white/5 p-1"
+                  />
+                </div>
                 <div className="p-6 md:p-8 flex-1">
                   <div className="flex items-center gap-5">
                     <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-blue-500/10 text-blue-100">
@@ -144,7 +153,7 @@ export default function ServicesPage() {
                     {service.items.map((item) => (
                       <li
                         key={item}
-                        className="flex items-start gap-4 text-lg text-slate-300"
+                        className="flex items-start gap-4 text-lg text-white"
                       >
                         <span
                           className={`mt-3 h-2.5 w-2.5 rounded-full ${service.dotColor}`}
