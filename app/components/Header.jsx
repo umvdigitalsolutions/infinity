@@ -26,6 +26,7 @@ export default function Header() {
                 src="/infi.jpeg"
                 alt="Anay Infinity Pvt Ltd Logo"
                 fill
+                sizes="(max-width: 767px) 40px, 56px"
                 priority
                 className="object-contain p-1.5"
               />
