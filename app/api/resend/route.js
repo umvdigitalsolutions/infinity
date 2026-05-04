@@ -28,7 +28,7 @@ export async function POST(req) {
     const textBody = `Name: ${name}\nEmail: ${email}\nPhone: ${phone || "Not provided"}\nCompany/Country: ${company || "Not provided"}\n\nMessage:\n${message}`;
 
     const sendResult = await resendClient.emails.send({
-      from: "Anay Infinity <onboarding@resend.dev>",
+      from: "Anay Infinity <noreply@anayinfinity.com>",
       to: ["ansh@anayinfinity.com"],
       subject: `New Contact Enquiry from ${name}`,
       reply_to: email,
