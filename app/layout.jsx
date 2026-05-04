@@ -14,6 +14,7 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+        <link rel="icon" href="/infi.jpeg" />
         {/* Tailwind is handled via local PostCSS/Tailwind setup; removed runtime CDN scripts */}
       </head>
       <body className="min-h-full flex flex-col bg-[#06111f] text-white">
