@@ -5,19 +5,20 @@
 
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #06111f;
+  --foreground: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #06111f;
+    --foreground: #ffffff;
   }
 }
 
 html, body, #__next {
   height: 100%;
+  background: var(--background);
 }
 
 body {

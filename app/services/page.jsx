@@ -20,12 +20,12 @@ const services = [
       {
         name: "Automotive Batteries",
         image: "/automotive.png",
-        brands: ["Exide", "Amaron", "Okaya", "SF Sonic"],
+        brands: ["Exide", "Okaya", "SF Sonic"],
       },
       {
         name: "Inverter Batteries",
         image: "/inverter.png",
-        brands: ["Luminous", "Microtek", "Amaron Inverter"],
+        brands: ["Luminous", "Microtek"],
       },
       {
         name: "Industrial Batteries",

@@ -25,7 +25,6 @@ const businessVerticals = [
         image: "/automotive.png",
           brands: [
           { name: "Exide", image: "/exide.jpg" },
-          { name: "Amaron", image: "/amaron.png" },
           { name: "Okaya", image: "/okaya.jpg" },
           { name: "SF Sonic", image: "/sf.jpeg" },
         ],
@@ -36,7 +35,6 @@ const businessVerticals = [
         brands: [
           { name: "Luminous", image: "/LUMINOUS.jpg" },
           { name: "Microtek", image: "/microtek.jpg" },
-          { name: "Amaron Inverter", image: "/amaroninverter.jpg" },
         ],
       },
       {
