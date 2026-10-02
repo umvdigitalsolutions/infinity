@@ -11,7 +11,7 @@ async function handleSubmit(e) {
   };
 
   try {
-    const res = await fetch("/api/RESEND", {
+    const res = await fetch("/api/resend", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

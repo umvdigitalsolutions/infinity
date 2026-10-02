@@ -5,7 +5,19 @@ export async function GET() {
   return NextResponse.json({ success: true, message: "API route working" });
 }
 
-const resendClient = new Resend({ apiKey: process.env.RESEND_API_KEY });
+function escapeHtml(value) {
+  return value.replace(/[&<>"']/g, (char) => {
+    const entities = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    };
+
+    return entities[char];
+  });
+}
 
 export async function POST(req) {
   try {
@@ -25,18 +37,26 @@ export async function POST(req) {
       );
     }
 
+    const resendClient = new Resend(process.env.RESEND_API_KEY);
     const textBody = `Name: ${name}\nEmail: ${email}\nPhone: ${phone || "Not provided"}\nCompany/Country: ${company || "Not provided"}\n\nMessage:\n${message}`;
 
-    const sendResult = await resendClient.emails.send({
-      from: "Anay Infinity <noreply@anayinfinity.com>",
+    const { data, error: sendError } = await resendClient.emails.send({
+      from: process.env.RESEND_FROM_EMAIL || "Anay Infinity <noreply@anayinfinity.com>",
       to: ["ansh@anayinfinity.com"],
       subject: `New Contact Enquiry from ${name}`,
-      reply_to: email,
+      replyTo: email,
       text: textBody,
-      html: `<pre style="white-space:pre-wrap;">${textBody}</pre>`,
+      html: `<pre style="white-space:pre-wrap;">${escapeHtml(textBody)}</pre>`,
     });
 
-    return NextResponse.json({ success: true, message: "Message sent successfully!", data: sendResult });
+    if (sendError) {
+      return NextResponse.json(
+        { success: false, error: sendError.message || "Failed to send message." },
+        { status: 502 }
+      );
+    }
+
+    return NextResponse.json({ success: true, message: "Message sent successfully!", data });
   } catch (err) {
     const error = err instanceof Error ? err : new Error(String(err));
     return NextResponse.json(
